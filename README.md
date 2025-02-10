@@ -1,3 +1,3 @@
 # TaskFolder
 This is my task repository for college, where I manage and organize all my college tasks efficiently.
-<p style="color: red;">Krutarth Raval</p>
+Krutarth Raval
