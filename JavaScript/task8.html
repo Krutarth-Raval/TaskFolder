@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating with Feedback</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .star {
+            font-size: 30px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .star.checked {
+            color: gold;
+        }
+
+        #ratingText {
+            font-size: 20px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rate the Product</h1>
+    <div class="carousel">
+        <span class="star" data-rating="1">&#9733;</span>
+        <span class="star" data-rating="2">&#9733;</span>
+        <span class="star" data-rating="3">&#9733;</span>
+        <span class="star" data-rating="4">&#9733;</span>
+        <span class="star" data-rating="5">&#9733;</span>
+    </div>
+    <p id="ratingValue">Your rating: 0</p>
+    <p id="ratingReview"></p>
+
+    <script>
+        const stars = document.querySelectorAll(".star");
+        const ratingValue = document.getElementById("ratingValue");
+        const ratingReview = document.getElementById("ratingReview");
+
+        const reviews = {
+            1: "Very Bad 😞",
+            2: "Bad 😕",
+            3: "Okay 😐",
+            4: "Good 🙂",
+            5: "Excellent! 🎉"
+        };
+
+        stars.forEach(star => {
+            star.addEventListener("click", () => {
+                let rating = star.getAttribute("data-rating");
+
+                stars.forEach(s => s.classList.remove("checked"));
+                for (let i = 0; i < rating; i++) {
+                    stars[i].classList.add("checked");
+                }
+
+                ratingValue.textContent = `Your rating: ${rating}`;
+                ratingReview.textContent = reviews[rating];
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Countdown Timer</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: mintcream;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        .input-group {
+            margin: 10px;
+
+        }
+
+        input {
+            border: 2px solid black;
+            font-size: 20px;
+            width: 100px;
+
+        }
+
+        input::placeholder {
+            text-align: center;
+        }
+
+        #timer {
+            font-size: 40px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 5px;
+            cursor: pointer;
+            border: 2px solid black;
+            padding: 5px 30px;
+            font-size: 22px;
+            font-weight: bold;
+            font-family: fantasy;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Countdown Timer</h1>
+
+    <div class="input-group">
+        <input type="number" id="hours" placeholder="Hours" min="0">
+        <input type="number" id="minutes" placeholder="Minutes" min="0">
+        <input type="number" id="seconds" placeholder="Seconds" min="0">
+    </div>
+
+    <button onclick="startCountdown()">Start</button>
+    <button onclick="resetTimer()">Reset</button>
+
+    <p id="timer">00:00:00</p>
+
+    <script>
+        let countdown;
+
+        function startCountdown() {
+            clearInterval(countdown); // Clear any running countdown
+
+            let hours = parseInt(document.getElementById("hours").value) || 0;
+            let minutes = parseInt(document.getElementById("minutes").value) || 0;
+            let seconds = parseInt(document.getElementById("seconds").value) || 0;
+
+            let totalSeconds = (hours * 3600) + (minutes * 60) + seconds;
+
+            if (totalSeconds <= 0) {
+                alert("Please enter a valid time!");
+                return;
+            }
+
+            function updateTimer() {
+                let h = Math.floor(totalSeconds / 3600);
+                let m = Math.floor((totalSeconds % 3600) / 60);
+                let s = totalSeconds % 60;
+
+                document.getElementById("timer").textContent =
+                    (h < 10 ? "0" + h : h) + ":" +
+                    (m < 10 ? "0" + m : m) + ":" +
+                    (s < 10 ? "0" + s : s);
+
+                if (totalSeconds > 0) {
+                    totalSeconds--;
+                } else {
+                    clearInterval(countdown);
+                    document.getElementById("timer").textContent = "Time's Up! ⏳";
+                }
+            }
+
+            updateTimer(); // Initial update
+            countdown = setInterval(updateTimer, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(countdown);
+            document.getElementById("timer").textContent = "00:00:00";
+            document.getElementById("hours").value = "";
+            document.getElementById("minutes").value = "";
+            document.getElementById("seconds").value = "";
+        }
+    </script>
+</body>
+
+</html>

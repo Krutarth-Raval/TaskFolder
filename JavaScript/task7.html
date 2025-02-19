@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: sans-serif;
+            color: white;
+        }
+
+        .counter {
+            font-size: 50px;
+            border: 2px solid white;
+            padding: 20px 40px;
+            background-color: #131313;
+        }
+
+        button {
+            font-size: 20px;
+            margin: 10px;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="counter">0</p>
+    <div class="modes">
+        <button class="increse">Increse</button>
+        <button class="reset">Reset</button>
+        <button class="descrese">Descrese</button>
+    </div>
+
+</body>
+<script>
+    let counter = 0
+    const increse = document.querySelector('.increse')
+    const reset = document.querySelector('.reset')
+    const descrese = document.querySelector('.descrese')
+    const counterElement = document.querySelector('.counter')
+    increse.addEventListener('click', () => {
+        counter++
+        counterElement.textContent = counter
+    })
+    reset.addEventListener('click', () => {
+        counter = 0
+        counterElement.textContent = counter
+    })
+    descrese.addEventListener('click', () => {
+        if (counter > 0) {
+            counter--;
+        } else {
+            counter = 0;
+        }
+        counterElement.textContent = counter;
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: monospace;
+        }
+
+        .menu-item {
+            margin: 10px;
+            font-size: 20px;
+        }
+
+        h1 {
+            color: red;
+            font-size: 35px;
+        }
+
+        button {
+            border: 2px solid red;
+            font-size: 20px;
+            border-radius: 30px;
+            color: black;
+            font-weight: bold;
+            padding: 10px 20px;
+        }
+
+        #menu {
+            margin-top: 30px;
+        }
+
+        p {
+            margin: 20px;
+            font-size: 20px;
+            border: 1px solid red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Restaurant Menu</h1>
+    <button onclick="filterMenu('all')">All</button>
+    <button onclick="filterMenu('Punjabi')">Punjabi</button>
+    <button onclick="filterMenu('Gujarati')">Gujarati</button>
+    <button onclick="filterMenu('South Indian')">South Indian</button>
+
+    <div id="menu"></div>
+
+    <script>
+        const menu = [
+            // Punjabi Dishes
+            { name: "Paneer Butter Masala", type: "veg", cuisine: "Punjabi" },
+            { name: "Dal Makhani", type: "veg", cuisine: "Punjabi" },
+            { name: "Amritsari Chole", type: "veg", cuisine: "Punjabi" },
+            { name: "Sarson Da Saag", type: "veg", cuisine: "Punjabi" },
+
+            // Gujarati Dishes
+            { name: "Sev Tameta", type: "veg", cuisine: "Gujarati" },
+            { name: "Undhiyu", type: "veg", cuisine: "Gujarati" },
+            { name: "Gujarati Kadhi", type: "veg", cuisine: "Gujarati" },
+            { name: "Handvo", type: "veg", cuisine: "Gujarati" },
+
+            // South Indian Dishes
+            { name: "Sambar", type: "veg", cuisine: "South Indian" },
+            { name: "Rasam", type: "veg", cuisine: "South Indian" },
+            { name: "Dhosa", type: "veg", cuisine: "South Indian" },
+            { name: "Idali", type: "veg", cuisine: "South Indian" }
+        ];
+
+
+        function filterMenu(type) {
+            const menuDiv = document.getElementById("menu");
+            menuDiv.innerHTML = "";
+            menu.forEach(item => {
+                if (type === "all" || item.cuisine === type) {
+                    const menuItem = document.createElement("p");
+                    menuItem.classList.add("menu-item");
+                    menuItem.textContent = item.name;
+                    menuDiv.appendChild(menuItem);
+                }
+            });
+        }
+
+        filterMenu("all");
+    </script>
+</body>
+
+</html>
